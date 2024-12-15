@@ -1,11 +1,14 @@
 import express from "express";
-
+import dotenv from 'dotenv';
+dotenv.config();
 const app = express();
 const port = 3000;
 app.use(express.json());
 
 let teaData = [];
 let nextId = 1;
+
+const PORT = process.env.PORT || 3000;
 
 app.post("/teas", (req, res) => {
   const { name, price } = req.body;
@@ -49,6 +52,6 @@ app.delete('/teas/:id',(req,res)=>{
     teaData.splice(tea, 1);
 })
 
-app.listen(port, () => {
-  console.log(`server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
 });
